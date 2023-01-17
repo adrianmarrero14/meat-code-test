@@ -53,7 +53,7 @@ h1 {
   font-family: 'Caveat';
   font-style: normal;
   font-weight: 700;
-  font-size: 140px;
+  font-size: 8vw;
   line-height: 100px;
   color: #3F454A;
 }
@@ -64,6 +64,7 @@ h2 {
   font-weight: 700;
   font-size: 80px;
   line-height: 38px;
+  text-align: center;
   color: #3F454A;
 }
 
@@ -81,5 +82,19 @@ ul li {
   font-weight: 600;
   font-size: 18px;
   line-height: 23px;
+}
+
+@media only screen and (max-width: 750px) {
+  h1 {
+    font-size: 70px;
+    line-height: 60px;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  h1 {
+    font-size: 100px;
+    line-height: 60px;
+  }
 }
 </style>

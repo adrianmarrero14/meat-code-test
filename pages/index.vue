@@ -13,16 +13,14 @@
       <div class="bigTitle">
         <h1>El secreto <br> de tu cocina</h1>
       </div>
-
-      <v-img max-width="100%" position="relative" :src="require('~/assets/backgroundIndex.png')"></v-img>
+    
+      <img class="background" :src="require('~/assets/backgroundIndex.png')">
     </div>
-
-    <!-- Articles -->
     <div>
       <v-row justify="center" align="center" class="mt-5">
         <h2>Nuestros artículos</h2>
       </v-row>
-      <v-container class="d-flex">
+      <v-container class="articlesContainer">
         <articles-filter />
         <v-row align="center">
           <v-col v-for="(item, index) in articles" cols="12" md="4" sm="6" xs="1" :key="index">
@@ -140,40 +138,65 @@
 </script>
 
 <style scoped>
-  header {
-    position: absolute;
-    z-index: 1;
-    width: 100vw;
-    height: 13vh;
-    display: flex;
-    align-items: center;
-  }
+header {
+  position: absolute;
+  z-index: 1;
+  width: 100vw;
+  height: 13vh;
+  display: flex;
+  align-items: center;
+}
 
-  header h2 {
-    margin-left: 3vw;
+header h2 {
+  margin-left: 3vw;
+}
+
+header img {
+  width: 4vw;
+  margin-right: 3vw;
+}
+
+.background {
+  width: 100%;
+  position: "relative"
+}
+
+.bigTitle {
+  position: absolute;
+  z-index: 2;
+  top: 20vw;
+  margin-left: 7vw;
+}
+
+.formContainer {
+  margin-top: 40px;
+  padding: 0 20%;
+}
+
+input {
+  width: 100%;
+  height: 60px;
+  border: 1px solid #CFCFCF;
+  padding-left: 20px;
+}
+
+.articlesContainer {
+  display: flex;
+}
+
+@media only screen and (max-width: 750px) {
+  .bigTitle {
+    top: 32vh;
   }
 
   header img {
-    width: 100px;
-    margin-right: 3vw;
+    width: 60px;
   }
+}
 
-  .bigTitle {
-    position: absolute;
-    z-index: 2;
-    top: 43vh;
-    margin-left: 7vw;
+@media only screen and (max-width: 800px) {
+  .articlesContainer {
+    flex-direction: column;
   }
-
-  .formContainer {
-    margin-top: 40px;
-    padding: 0 20%;
-  }
-
-  input {
-    width: 100%;
-    height: 60px;
-    border: 1px solid #CFCFCF;
-    padding-left: 20px;
-  }
+}
 </style>
