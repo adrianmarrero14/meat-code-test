@@ -74,4 +74,12 @@ p {
   font-size: 18px;
   line-height: 23px;
 }
+
+ul li {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 23px;
+}
 </style>
