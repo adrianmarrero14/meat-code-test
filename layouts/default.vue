@@ -3,12 +3,7 @@
     <v-main>
       <Nuxt />
     </v-main>
-    <v-navigation-drawer
-      v-model="rightDrawer"
-      :right="right"
-      temporary
-      fixed
-    >
+    <v-navigation-drawer v-model="rightDrawer" :right="right" temporary fixed>
       <v-list>
         <v-list-item @click.native="right = !right">
           <v-list-item-action>
@@ -26,7 +21,7 @@
 <script>
 export default {
   name: 'DefaultLayout',
-  data () {
+  data() {
     return {
       clipped: false,
       drawer: false,
@@ -53,6 +48,7 @@ export default {
 </script>
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap");
+
 h1 {
   font-family: 'Caveat';
   font-style: normal;
@@ -61,6 +57,7 @@ h1 {
   line-height: 100px;
   color: #3F454A;
 }
+
 h2 {
   font-family: "Caveat";
   font-style: normal;
@@ -69,6 +66,7 @@ h2 {
   line-height: 38px;
   color: #3F454A;
 }
+
 p {
   font-family: 'Open Sans';
   font-style: normal;
@@ -76,5 +74,4 @@ p {
   font-size: 18px;
   line-height: 23px;
 }
-
 </style>

@@ -1,5 +1,9 @@
 <template>
-    <button><p><slot></slot></p></button>
+    <button>
+        <p>
+            <slot></slot>
+        </p>
+    </button>
 </template>
 <style scoped>
 button {
@@ -12,8 +16,8 @@ button {
     justify-content: center;
     align-items: center;
 }
-p{
+
+p {
     margin: 0;
 }
-
 </style>
