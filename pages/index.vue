@@ -185,6 +185,10 @@ input {
 }
 
 @media only screen and (max-width: 750px) {
+  .background {
+    width: auto;
+  }
+
   .bigTitle {
     top: 32vh;
   }
