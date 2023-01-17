@@ -1,83 +1,124 @@
 <template>
-  <v-row justify="center" align="center">
-    <v-col cols="12" sm="8" md="6">
-      <v-card class="logo py-4 d-flex justify-center">
-        <NuxtLogo />
-        <VuetifyLogo />
-      </v-card>
-      <v-card>
-        <v-card-title class="headline">
-          Welcome to the Vuetify + Nuxt.js template
-        </v-card-title>
-        <v-card-text>
-          <p>Vuetify is a progressive Material Design component framework for Vue.js. It was designed to empower developers to create amazing applications.</p>
-          <p>
-            For more information on Vuetify, check out the <a
-              href="https://vuetifyjs.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              documentation
-            </a>.
-          </p>
-          <p>
-            If you have questions, please join the official <a
-              href="https://chat.vuetifyjs.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              title="chat"
-            >
-              discord
-            </a>.
-          </p>
-          <p>
-            Find a bug? Report it on the github <a
-              href="https://github.com/vuetifyjs/vuetify/issues"
-              target="_blank"
-              rel="noopener noreferrer"
-              title="contribute"
-            >
-              issue board
-            </a>.
-          </p>
-          <p>Thank you for developing with Vuetify and I look forward to bringing more exciting features in the future.</p>
-          <div class="text-xs-right">
-            <em><small>&mdash; John Leider</small></em>
-          </div>
-          <hr class="my-3">
-          <a
-            href="https://nuxtjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Nuxt Documentation
-          </a>
-          <br>
-          <a
-            href="https://github.com/nuxt/nuxt.js"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Nuxt GitHub
-          </a>
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer />
-          <v-btn
-            color="primary"
-            nuxt
-            to="/inspire"
-          >
-            Continue
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-col>
-  </v-row>
+  <div>
+      <div>
+        <header position="absolute" class="d-flex">
+          <h2>Logo</h2>
+          <v-spacer></v-spacer>
+          <img :src="require('~/assets/social/facebook.png')">
+          <img :src="require('~/assets/social/instagram.png')">
+          <img :src="require('~/assets/social/youtube.png')">
+        </header>
+        <div class="bigTitle">
+          <h1>El secreto <br> de tu cocina</h1>
+        </div>
+        
+        <v-img
+          max-width="100%"
+          position="relative"
+          :src="require('~/assets/backgroundIndex.png')"
+        ></v-img>
+      </div>
+      <div>
+        <v-row justify="center" align="center" class="mt-5">
+          <h2>Nuestros artículos</h2>
+        </v-row>
+        <v-container class="d-flex">
+          <articles-filter />
+          <v-row align="center"  >
+            <v-col v-for="(item, index) in articles" cols="12" md="4" sm="6" xs="1" :key="index" >
+              <cards :title="item.title" :image="item.image" :content="item.content" :url="item.url"  />
+            </v-col>
+          </v-row>
+        </v-container>
+      </div>
+
+    <div>
+      <v-row justify="center" align="center" class="mt-5">
+        <h2>Contáctanos</h2>
+      </v-row>
+      <div class="formContainer">
+        <v-row justify="center" align="center" class="mt-5">
+          <v-col v-for="(item, index) in formData" cols="6" :key="index">
+            <div>
+                <h3>{{ item.title }}</h3>
+                <input type="text" v-model="item.value" >
+            </div>
+          </v-col>
+          <v-col> 
+            <div @click="sendData()">
+              <button-form >Enviar</button-form>
+            </div>
+          </v-col>
+        </v-row>
+      </div>
+      
+
+    </div>
+
+  </div>
 </template>
 
 <script>
+import { mapState, mapActions } from "vuex";
 export default {
-  name: 'IndexPage'
-}
+  name: "IndexPage",
+  data(){
+    return {
+      formData: { firstname: { title: 'NOMBRE', value: '' }, 
+                  lastname: { title: 'APELLIDO', value: '' }, 
+                  mail: { title: 'MAIL', value: '' }, 
+                  phoneNumber: { title: 'TELEFONO', value: '' }},
+    }
+  },
+  methods: {
+    ...mapActions("form", ["formAction"]),
+    sendData(){
+      let data = {
+        firstname: this.formData.firstname.value,
+        lastname: this.formData.lastname.value,
+        email: this.formData.mail.value,
+        phone: this.formData.phoneNumber.value
+      }
+      console.log(data)
+      this.formAction(data)
+    }
+  },
+  computed: {
+    ...mapState("products", ["articles"]),
+  },
+};
 </script>
+
+<style scoped>
+header {
+  position: absolute;
+  z-index: 1;
+  width: 100vw;
+  height: 13vh;
+  display: flex;
+  align-items: center;
+}
+header h2 {
+  margin-left: 3vw;
+}
+header img {
+  width:100px;
+  margin-right: 3vw;
+}
+.bigTitle {
+  position: absolute;
+  z-index: 2;
+  top: 43vh;
+  margin-left: 7vw;
+}
+.formContainer {
+  margin-top: 40px;
+  padding: 0 20%;
+}
+input {
+    width: 100%;
+    height: 60px;
+    border: 1px solid #CFCFCF;
+    padding-left: 20px;
+}
+</style>
